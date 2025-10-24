@@ -17,7 +17,8 @@ This ROS package implements an autonomous exploration system using **RRT\*** wit
 
 The diagram below shows the data flow between the main components of the exploration system.
 
-![System Architecture](planning%20flow%20chart.png)
+![System Architecture](docs/planning_flow_chart.png)
+
 
 
 ##  How to Run
@@ -48,8 +49,7 @@ This launches:
 
 
 ## Authors
-
-**Gebrecherkos Gebrezgabhier**  
-**Pravin Oli**  
+**Pravin Oli** 
+**Gebrecherkos Gebrezgabhier** 
 Supervised by: *Narcis Palomeras, Sebastian, Martha*  
 University of Girona – Intelligent Field Robotics Systems
