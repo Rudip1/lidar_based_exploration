@@ -1,0 +1,10 @@
+frame_id: "odom"
+resolution: 0.05
+
+bounding_box_min_x: -1.0
+bounding_box_max_x:  2.0
+bounding_box_min_y: -1.0
+bounding_box_max_y:  2.0
+bounding_box_min_z:  0.0
+bounding_box_max_z:  2.0
+

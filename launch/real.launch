@@ -1,0 +1,39 @@
+<launch>
+    <!-- Laser scan to point cloud conversion -->
+    <node pkg="lidar_based_exploration" type="laser_scan_to_point_cloud_node.py" name="laserscan_to_pointcloud" output="screen">
+        <remap from="/kobuki/sensors/rplidar" to="/turtlebot/kobuki/sensors/rplidar"/>
+    </node>
+
+    <!-- Global Parameters -->
+    <param name="is_unknown_valid" value="true"/>
+    <param name="is_rrt_star" value="true"/>
+
+    <!-- Sampling-based goal selector (real version) -->
+    <node pkg="lidar_based_exploration" type="sampling_based_exploration_node_real.py" name="sampling_exploration" output="screen"/>
+
+    <!-- Path planner and controller (real version) -->
+    <node pkg="lidar_based_exploration" type="turtlebot_online_path_planning_node_real.py" name="online_path_planner" output="screen"/>
+
+    <!-- Octomap Server -->
+    <rosparam file="$(find lidar_based_exploration)/config/octomap_real.yaml" command="load" />
+    <node pkg="octomap_server" type="octomap_server_node" name="octomap" output="screen">
+        <param name="frame_id" value="odom"/>
+    </node>
+
+    <!-- Optional: Static transform if needed -->
+    <!--
+    <node pkg="tf2_ros" type="static_transform_publisher" 
+          name="static_tf_world_to_odom" 
+          args="0 0 0 0 0 0 1 odom odom"/>
+    -->
+
+    <!-- RViz -->
+    <node pkg="rviz" type="rviz" name="rviz" args="-d $(find lidar_based_exploration)/config/real.rviz"/>
+
+    <!-- Optional: RQT GUI -->
+    <node name="rqt_gui" pkg="rqt_gui" type="rqt_gui"
+          args="--perspective-file $(find lidar_based_exploration)/config/kobuki_cmd.perspective">
+        <remap from="robot_description" to="/turtlebot/robot_description"/>
+    </node>
+</launch>
+

@@ -1,0 +1,28 @@
+<launch>
+    <include file="$(find lidar_based_exploration)/launch/turtlebot_basic.launch"/>
+
+    <node pkg="lidar_based_exploration" type="laser_scan_to_point_cloud_node.py" name="laserscan_to_pointcloud" output="screen">
+        <remap from="/kobuki/sensors/rplidar" to="/turtlebot/kobuki/sensors/rplidar"/>
+    </node>
+    
+    <!--  Parameter Definitions -->
+    <param name="is_unknown_valid" value="true"/>
+    <param name="is_rrt_star" value="true"/>
+
+
+    
+    <node pkg="lidar_based_exploration" type="turtlebot_online_path_planning_node.py" name="online_path_planner" output="screen"/>
+    <node pkg="lidar_based_exploration" type="sampling_based_exploration_node.py" name="sampling_exploration" output="screen"/>
+
+    
+
+    <param name="~frame_id" type="string" value="world_ned"/>
+    <param name="~base_frame_id" type="string" value="turtlebot/base_link"/>
+    <node pkg="octomap_server" type="octomap_server_node" name="octomap" output="screen"/>
+    <node name="rqt_gui" pkg="rqt_gui" type="rqt_gui"
+        args="--perspective-file $(find lidar_based_exploration)/config/kobuki_cmd.perspective">
+        <remap from="robot_description" to="/turtlebot/robot_description"/>
+    </node>
+    
+</launch>
+
