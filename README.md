@@ -19,6 +19,16 @@ The diagram below shows the data flow between the main components of the explora
 
 ![System Architecture](docs/planning%20flow%20chart.png)
 
+## Paper
+
+See inside media folder or click the link below
+
+Drive link  
+🔗 [Project Paper](https://drive.google.com/file/d/1mg0Jy663kbgZXEIQpSAuJiAyRYLIE9T1/view?usp=drive_link)
+
+---
+
+
 
 ##  How to Run
 
